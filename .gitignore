@@ -1,0 +1,51 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://java.com
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.next
+pom.xml.bak
+pom.xml.releaseBackup
+release.properties
+
+# Gradle
+.gradle/
+build/
+/out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+tmp/
+.metadata/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
