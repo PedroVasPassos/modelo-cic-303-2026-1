@@ -20,13 +20,13 @@ package br.maua.cic303;
 /* MACROS (Expressões Regulares)                                             */
 /* ========================================================================= */
 
-WhiteSpace = 
+WhiteSpace = [ \t\r\n\f]+
 
 /* id: Começa com letra, seguido de letras ou números */
-Identifier = 
+Identifier = [a-zA-Z][a-zA-Z0-9]*
 
 /* number: Números inteiros ou decimais */
-Number = 
+Number = [0-9]+(\.[0-9]+)?
 
 %%
 /* ========================================================================= */
@@ -39,20 +39,20 @@ Number =
     {WhiteSpace}    { /* Não faz nada */ }
 
     /* Pontuação e Atribuição */
-    "="             
-    "("             
-    ")"             
+    "="             { return token(Tag.ASSIGN, yytext()); }      
+    "("             { return token(Tag.LPAREN, yytext()); }      
+    ")"             { return token(Tag.RPAREN, yytext()); }      
 
     /* Operadores Matemáticos */
-    "+" | "-"       
-    "*" | "/"       
+    "+" | "-"       { return token(Tag.ADD_OP, yytext()); }     
+    "*" | "/"       { return token(Tag.MUL_OP, yytext()); }
 
     /* Identificadores e Números */
-    {Identifier}    
-    {Number}        
+    {Identifier}    { return token(Tag.ID, yytext()); } 
+    {Number}        { return token(Tag.NUMBER, yytext()); }
 
     /* Fallback: Qualquer outro caractere não reconhecido gera um Erro */
-    .               
+    .               { return token(Tag.ERROR, yytext()); }
 }
 
 <<EOF>>             { return token(Tag.EOF, ""); }
